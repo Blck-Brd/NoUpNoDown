@@ -21,7 +21,7 @@ public class JumpController : MonoBehaviour
     private Vector3 myNormal; // character normal
     private float distGround; // distance from character position to ground
     private bool jumping = false; // flag &quot;I'm jumping to wall&quot;
-    private float vertSpeed = 0; // vertical jump current speed
+    
     public float jumpSpeedModifier;
 
     private Transform myTransform;

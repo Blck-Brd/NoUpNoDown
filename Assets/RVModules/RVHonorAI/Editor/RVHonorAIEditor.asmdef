@@ -1,0 +1,22 @@
+{
+    "name": "RVHonorAIEditor",
+    "references": [
+        "RVSmartAI",
+        "xNodeEditor",
+        "xNode",
+        "RVUtilitiesEditor",
+        "RVHonorAI",
+        "RVUtilities",
+        "RVSmartAIEditor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
