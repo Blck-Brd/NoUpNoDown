@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpController : MonoBehaviour
 {
-
+    //JumpController Variables
     // Prequisites: create an empty GameObject, attach to it a Rigidbody w/ UseGravity unchecked
     // To empty GO also add BoxCollider and this script. Makes this the parent of the Player
     // Size BoxCollider to fit around Player model.
@@ -14,6 +14,8 @@ public class JumpController : MonoBehaviour
     private float lerpSpeed = 10; // smoothing speed
     private float gravity = 10; // gravity acceleration
     private bool isGrounded;
+
+    public bool isCrouched;
     private float deltaGround = 0.2f; // character is grounded up to this distance
     private float jumpSpeed = 10; // vertical jump initial speed
     private float jumpRange = 1000; // range to detect target wall
@@ -31,14 +33,14 @@ public class JumpController : MonoBehaviour
 
     public float distanceToImpact;
 
-    //ANIM
+    //ANIM 
     Animator animatorTorso;
     Animator animatorLeftHand;
     Animator animatorRightHand;
+
+
     public GameObject playerTorso;
     
-    public GameObject rightHandEGO;
-    public GameObject leftHandEGO;
 
     public GameObject rightHand;
     public GameObject leftHand;
@@ -64,6 +66,8 @@ public class JumpController : MonoBehaviour
         animatorLeftHand = leftHand.GetComponent<Animator>();
         animatorRightHand = rightHand.GetComponent<Animator>();
 
+        
+
        
 
 
@@ -80,7 +84,13 @@ public class JumpController : MonoBehaviour
         }
     }
 
-
+    void OnCollisionStay(Collision other)
+    {
+                if (other.gameObject.CompareTag("Walkable"))
+        {
+            animGrounded = true;
+        }
+    }
 
     void OnCollisionExit(Collision collision)
     {
@@ -100,12 +110,13 @@ public class JumpController : MonoBehaviour
         float Forward;
         float Turn;
         
+        //Movement
         Forward = Input.GetAxis("Vertical") * moveSpeed;
         Turn = Input.GetAxis("Horizontal") * (turnSpeed /15);
 
 
         
-        AnimFeed(Forward, Turn, animGrounded, jumping);
+        AnimFeed(Forward, Turn, animGrounded, jumping, isCrouched);
 
 
 
@@ -115,28 +126,18 @@ public class JumpController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
-       
-
-
-       // Debug.Log(Camera.main.transform.forward);
         // jump code - jump to wall or simple jump
         if (jumping) return; // abort Update while jumping to a wall
 
-        
-
         Ray ray;
         RaycastHit hit;
-        
-
-       
-
         if (Input.GetButtonDown("Jump"))
         { // jump pressed:
-            ray = new Ray(myTransform.position, /*myTransform.forward*/Camera.main.transform.forward);   //Look at target wall
+            ray = new Ray(myTransform.position, Camera.main.transform.forward);   //Look at target wall
           
-            if (Physics.Raycast(ray, out hit, jumpRange) && hit.transform.CompareTag("Walkable"))                //Is wall walkable?
-            { // wall ahead?
+            if (Physics.Raycast(ray, out hit, jumpRange) && hit.transform.CompareTag("Walkable"))   //Is wall walkable?
+            { 
+                // wall ahead?
                 distanceToImpact = hit.distance;
                 JumpToWall(hit.point, hit.normal); // yes: jump to the wall
 
@@ -172,6 +173,11 @@ public class JumpController : MonoBehaviour
         // move the character forth/back with Vertical axis:
         myTransform.Translate(0, 0, Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime);
 
+        //Crouch Toggle
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            isCrouched = !isCrouched;
+        }
 
 
 
@@ -215,7 +221,7 @@ public class JumpController : MonoBehaviour
     {
         for (float t = 0.0f; t < 1.0f;)
         {
-            t += Time.deltaTime / distanceToImpact * jumpSpeedModifier;
+            t += Time.deltaTime / distanceToImpact * jumpSpeedModifier; //Duration of the jump
             myTransform.position = Vector3.Lerp(orgPos, dstPos, t);
             myTransform.rotation = Quaternion.Slerp(orgRot, dstRot, t);
             yield return null; // return here next frame
@@ -230,20 +236,23 @@ public class JumpController : MonoBehaviour
 
 
 
-    void AnimFeed(float Forward, float Turn, bool animGrounded, bool jumping)
+    void AnimFeed(float Forward, float Turn, bool animGrounded, bool jumping, bool isCrouched)
     {
 
         animatorTorso.SetFloat("Forward", Forward);
         animatorTorso.SetFloat("Turn", Turn);
         animatorTorso.SetBool("OnGround", animGrounded);
+        animatorTorso.SetBool("Crouch", isCrouched);
 
         animatorLeftHand.SetFloat("Forward", Forward);
         animatorLeftHand.SetFloat("Turn", Turn);
         animatorLeftHand.SetBool("OnGround", animGrounded);
+        animatorLeftHand.SetBool("Crouch", isCrouched);
 
         animatorRightHand.SetFloat("Forward", Forward);
         animatorRightHand.SetFloat("Turn", Turn);
         animatorRightHand.SetBool("OnGround", animGrounded);
+        animatorRightHand.SetBool("Crouch", isCrouched);
     }
 
 }

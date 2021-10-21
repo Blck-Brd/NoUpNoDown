@@ -10,11 +10,11 @@ public class FPSControll : MonoBehaviour
         public float sensitivityX = 15F;
         public float sensitivityY = 15F;
 
-        public float minimumX = -90F;
-        public float maximumX = 90F;
+        public float minimumX = -60F;
+        public float maximumX = 60F;
 
-        public float minimumY = -60F;
-        public float maximumY = 60F;
+        public float minimumY = -50F;
+        public float maximumY = 50F;
 
         float rotationY = 0F;
     
@@ -75,12 +75,17 @@ public class FPSControll : MonoBehaviour
         leftHandEGO.transform.localEulerAngles = new Vector3(-handRotationY, handRotationX, 0);
         rightHandEGO.transform.localEulerAngles = new Vector3(-handRotationY, handRotationX, 0);
 
+//NEXT UP:
+/*napárovat úhel vektoru pohledu s clampem -> aby rotace rukou byla o něco míň, než rotace kamery, ale nespínala se při návratu zpět*/
+
+
 
 
     }
 
         void Start()
         {
+            
             //if(!networkView.isMine)
             //enabled = false;
 
