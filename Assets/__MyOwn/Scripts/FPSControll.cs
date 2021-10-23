@@ -10,7 +10,7 @@ public class FPSControll : MonoBehaviour
         public float sensitivityX = 15F;
         public float sensitivityY = 15F;
 
-        public float minimumX = -60F;
+        public float minimumX = -50F;
         public float maximumX = 60F;
 
         public float minimumY = -50F;
@@ -44,8 +44,8 @@ public class FPSControll : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
          
 
-                rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-                rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
+            rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+            rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
                 transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
             }
@@ -65,18 +65,31 @@ public class FPSControll : MonoBehaviour
         Debug.DrawRay(transform.position, forward, Color.green);
 
         //HANDS CODE
-        handRotationX += Input.GetAxis("Mouse X") * sensitivityX;
-        handRotationX = Mathf.Clamp(handRotationX, -40, 40);
 
+
+       
+        handRotationX += Input.GetAxis("Mouse X") * sensitivityX;
+        handRotationX = Mathf.Clamp(handRotationX, -50, 60);
+        
 
         handRotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-        handRotationY = Mathf.Clamp(handRotationY, -10, 80);
+        handRotationY = Mathf.Clamp(handRotationY, -50, 50);
+       
 
-        leftHandEGO.transform.localEulerAngles = new Vector3(-handRotationY, handRotationX, 0);
-        rightHandEGO.transform.localEulerAngles = new Vector3(-handRotationY, handRotationX, 0);
+        leftHandEGO.transform.localEulerAngles = new Vector3(-handRotationY/3*2, handRotationX/3*2, 0);
+        rightHandEGO.transform.localEulerAngles = new Vector3(-handRotationY/3*2, handRotationX/3*2, 0);
+     
+
+
+        
+   
+
+        
 
 //NEXT UP:
 /*napárovat úhel vektoru pohledu s clampem -> aby rotace rukou byla o něco míň, než rotace kamery, ale nespínala se při návratu zpět*/
+     Debug.Log(Vector3.Angle(leftHandEGO.transform.forward,Camera.main.transform.forward));
+     //<45, >55
 
 
 

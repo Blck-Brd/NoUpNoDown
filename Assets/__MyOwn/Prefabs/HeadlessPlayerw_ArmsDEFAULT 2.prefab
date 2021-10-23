@@ -359,12 +359,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec34ba2f50ef5e747a625112d276e9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCrouched: 0
   jumpSpeedModifier: 10
   boxCollider: {fileID: 6561444832367667714}
   distanceToImpact: 0
   playerTorso: {fileID: 6327424014794510147}
-  rightHandEGO: {fileID: 515223464}
-  leftHandEGO: {fileID: 936230592}
   rightHand: {fileID: 919132148246018107}
   leftHand: {fileID: 919132148184167262}
   animGrounded: 0
@@ -782,7 +781,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 36516372554a9f84f95f80418e4df36a,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 36516372554a9f84f95f80418e4df36a,
         type: 3}
