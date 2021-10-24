@@ -133,6 +133,7 @@ public class JumpController : MonoBehaviour
         RaycastHit hit;
         if (Input.GetButtonDown("Jump"))
         { // jump pressed:
+        isCrouched =false;
             ray = new Ray(myTransform.position, Camera.main.transform.forward);   //Look at target wall
           
             if (Physics.Raycast(ray, out hit, jumpRange) && hit.transform.CompareTag("Walkable"))   //Is wall walkable?
