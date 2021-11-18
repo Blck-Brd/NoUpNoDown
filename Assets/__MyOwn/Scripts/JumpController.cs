@@ -34,17 +34,17 @@ public class JumpController : MonoBehaviour
     public float distanceToImpact;
 
     //ANIM 
-    Animator animatorTorso;
+    Animator animatorPlayer;
     Animator animatorLeftHand;
     Animator animatorRightHand;
 
 
-    public GameObject playerTorso;
+    public GameObject Player;
     
-
+/*
     public GameObject rightHand;
     public GameObject leftHand;
-
+*/
 
  
 
@@ -62,9 +62,9 @@ public class JumpController : MonoBehaviour
         distGround = boxCollider.size.y - boxCollider.center.y;
 
 
-        animatorTorso = playerTorso.GetComponent<Animator>();
-        animatorLeftHand = leftHand.GetComponent<Animator>();
-        animatorRightHand = rightHand.GetComponent<Animator>();
+        animatorPlayer = Player.GetComponent<Animator>();
+        //animatorLeftHand = leftHand.GetComponent<Animator>();
+        //animatorRightHand = rightHand.GetComponent<Animator>();
 
         
 
@@ -150,8 +150,11 @@ public class JumpController : MonoBehaviour
             }
         }
 
-        // movement code - turn left/right with Horizontal axis:
-        myTransform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
+        // movement code - turn left/right with Horizontal using mouse axis:
+        
+        myTransform.Rotate(0, Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime, 0);
+
+
         // update surface normal and isGrounded:
         ray = new Ray(myTransform.position, -myNormal); // cast ray downwards
         if (Physics.Raycast(ray, out hit))
@@ -240,11 +243,11 @@ public class JumpController : MonoBehaviour
     void AnimFeed(float Forward, float Turn, bool animGrounded, bool jumping, bool isCrouched)
     {
 
-        animatorTorso.SetFloat("Forward", Forward);
-        animatorTorso.SetFloat("Turn", Turn);
-        animatorTorso.SetBool("OnGround", animGrounded);
-        animatorTorso.SetBool("Crouch", isCrouched);
-
+        animatorPlayer.SetFloat("Forward", Forward);
+        animatorPlayer.SetFloat("Turn", Turn);
+        animatorPlayer.SetBool("OnGround", animGrounded);
+        animatorPlayer.SetBool("Crouch", isCrouched);
+/*
         animatorLeftHand.SetFloat("Forward", Forward);
         animatorLeftHand.SetFloat("Turn", Turn);
         animatorLeftHand.SetBool("OnGround", animGrounded);
@@ -254,6 +257,8 @@ public class JumpController : MonoBehaviour
         animatorRightHand.SetFloat("Turn", Turn);
         animatorRightHand.SetBool("OnGround", animGrounded);
         animatorRightHand.SetBool("Crouch", isCrouched);
+
+        */
     }
 
 }

@@ -66,7 +66,7 @@ public class FPSControll : MonoBehaviour
 
         //HANDS CODE
 
-
+/*
        
         handRotationX += Input.GetAxis("Mouse X") * sensitivityX;
         handRotationX = Mathf.Clamp(handRotationX, -50, 50);
@@ -79,7 +79,7 @@ public class FPSControll : MonoBehaviour
         leftHandEGO.transform.localEulerAngles = new Vector3(-handRotationY, handRotationX, 0);
         rightHandEGO.transform.localEulerAngles = new Vector3(-handRotationY, handRotationX, 0);
      
-
+*/
 
         
    
