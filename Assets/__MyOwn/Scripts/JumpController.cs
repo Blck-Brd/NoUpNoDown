@@ -111,12 +111,12 @@ public class JumpController : MonoBehaviour
         float Turn;
         
         //Movement
-        Forward = Input.GetAxis("Vertical") * moveSpeed;
-        Turn = Input.GetAxis("Horizontal") * (turnSpeed /15);
-
+        //Forward = Input.GetAxis("Vertical") * moveSpeed;
+        //Turn = Input.GetAxis("Horizontal") * (turnSpeed /15);
+        Debug.Log(Player.GetComponent<Rigidbody>().velocity);
 
         
-        AnimFeed(Forward, Turn, animGrounded, jumping, isCrouched);
+        //AnimFeed(Forward, Turn, animGrounded, jumping, isCrouched);
 
 
 
