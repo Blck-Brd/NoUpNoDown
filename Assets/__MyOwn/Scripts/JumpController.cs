@@ -34,21 +34,13 @@ public class JumpController : MonoBehaviour
     public float distanceToImpact;
 
     //ANIM 
-    Animator animatorPlayer;
-    Animator animatorLeftHand;
-    Animator animatorRightHand;
-
-
-    public GameObject Player;
-    
-/*
-    public GameObject rightHand;
-    public GameObject leftHand;
-*/
-
- 
+    Animator animatorPlayer; 
+    public GameObject player;
 
     public bool animGrounded;
+    public float forward;
+    public float turn;
+  
 
 
     // Start is called before the first frame update
@@ -62,9 +54,8 @@ public class JumpController : MonoBehaviour
         distGround = boxCollider.size.y - boxCollider.center.y;
 
 
-        animatorPlayer = Player.GetComponent<Animator>();
-        //animatorLeftHand = leftHand.GetComponent<Animator>();
-        //animatorRightHand = rightHand.GetComponent<Animator>();
+        animatorPlayer = player.GetComponent<Animator>();
+
 
         
 
@@ -105,17 +96,13 @@ public class JumpController : MonoBehaviour
     {
         // apply constant weight force according to character normal:
         rigidbody.AddForce(-gravity * rigidbody.mass * myNormal);
-
-        //ANIM VRS
-        float Forward;
-        float Turn;
         
         //Movement
         //Forward = Input.GetAxis("Vertical") * moveSpeed;
         //Turn = Input.GetAxis("Horizontal") * (turnSpeed /15);
-        Debug.Log(Player.GetComponent<Rigidbody>().velocity);
+        Debug.Log(player.GetComponent<Rigidbody>().velocity.magnitude);
 
-        
+        forward = rigidbody.velocity.magnitude;
         //AnimFeed(Forward, Turn, animGrounded, jumping, isCrouched);
 
 
@@ -247,18 +234,7 @@ public class JumpController : MonoBehaviour
         animatorPlayer.SetFloat("Turn", Turn);
         animatorPlayer.SetBool("OnGround", animGrounded);
         animatorPlayer.SetBool("Crouch", isCrouched);
-/*
-        animatorLeftHand.SetFloat("Forward", Forward);
-        animatorLeftHand.SetFloat("Turn", Turn);
-        animatorLeftHand.SetBool("OnGround", animGrounded);
-        animatorLeftHand.SetBool("Crouch", isCrouched);
 
-        animatorRightHand.SetFloat("Forward", Forward);
-        animatorRightHand.SetFloat("Turn", Turn);
-        animatorRightHand.SetBool("OnGround", animGrounded);
-        animatorRightHand.SetBool("Crouch", isCrouched);
-
-        */
     }
 
 }
