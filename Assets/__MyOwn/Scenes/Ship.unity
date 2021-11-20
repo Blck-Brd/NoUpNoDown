@@ -376,7 +376,7 @@ Transform:
   m_Children:
   - {fileID: 1357614606075040177}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 186.569, z: 0}
 --- !u!114 &160488009
 MonoBehaviour:
@@ -417,8 +417,8 @@ MonoBehaviour:
   jumpSpeedModifier: 10
   boxCollider: {fileID: 160488007}
   distanceToImpact: 0
-  animatorPlayer: {fileID: 1357614606075006034}
-  player: {fileID: 160488006}
+  animatorPlayer: {fileID: 0}
+  player: {fileID: 1357614606075006033}
   animGrounded: 0
   forward: 0
   turn: 0
@@ -1235,7 +1235,7 @@ Transform:
   - {fileID: 1357614606075040191}
   - {fileID: 1357614606075040185}
   m_Father: {fileID: 1357614606075040177}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1523473002
 GameObject:
@@ -1347,7 +1347,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1963892383
 GameObject:
@@ -1554,7 +1554,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1357614606061338849
 SkinnedMeshRenderer:
@@ -3734,8 +3734,8 @@ Transform:
   m_LocalPosition: {x: 0.00061035156, y: -1.3742065, z: -0.019165039}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1329913626}
   - {fileID: 1357614606075040183}
+  - {fileID: 1329913626}
   - {fileID: 6561444832748488737}
   m_Father: {fileID: 160488008}
   m_RootOrder: 0
@@ -3784,7 +3784,7 @@ Transform:
   m_Children:
   - {fileID: 1357614606075040201}
   m_Father: {fileID: 1357614606075040177}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1357614606075040185
 Transform:

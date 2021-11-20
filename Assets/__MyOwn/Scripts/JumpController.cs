@@ -52,7 +52,7 @@ public class JumpController : MonoBehaviour
         rigidbody.freezeRotation = true; // disable physics rotation
                                          // distance from transform.position to ground
         distGround = boxCollider.size.y - boxCollider.center.y;
-
+        animatorPlayer = GetComponentInChildren<Animator>();
 
  
 
