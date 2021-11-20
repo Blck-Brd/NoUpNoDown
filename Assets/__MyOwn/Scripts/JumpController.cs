@@ -34,7 +34,7 @@ public class JumpController : MonoBehaviour
     public float distanceToImpact;
 
     //ANIM 
-    Animator animatorPlayer; 
+    public Animator animatorPlayer; 
     public GameObject player;
 
     public bool animGrounded;
@@ -54,7 +54,7 @@ public class JumpController : MonoBehaviour
         distGround = boxCollider.size.y - boxCollider.center.y;
 
 
-        animatorPlayer = player.GetComponent<Animator>();
+ 
 
 
         
@@ -98,12 +98,12 @@ public class JumpController : MonoBehaviour
         rigidbody.AddForce(-gravity * rigidbody.mass * myNormal);
         
         //Movement
-        //Forward = Input.GetAxis("Vertical") * moveSpeed;
-        //Turn = Input.GetAxis("Horizontal") * (turnSpeed /15);
-        Debug.Log(player.GetComponent<Rigidbody>().velocity.magnitude);
+        forward = Input.GetAxis("Vertical") * moveSpeed;
+        turn = Input.GetAxis("Mouse X") * (turnSpeed /15);
+        
 
-        forward = rigidbody.velocity.magnitude;
-        //AnimFeed(Forward, Turn, animGrounded, jumping, isCrouched);
+       
+        AnimFeed(forward, turn, animGrounded, jumping, isCrouched);
 
 
 

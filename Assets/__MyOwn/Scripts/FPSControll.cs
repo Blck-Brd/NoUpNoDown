@@ -27,12 +27,6 @@ public class FPSControll : MonoBehaviour
 
 
 
-    //hands
-    public GameObject rightHandEGO;
-    public GameObject leftHandEGO;
-
-
-
     void Update()
         {
         //CAM CODE
@@ -64,35 +58,7 @@ public class FPSControll : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
         Debug.DrawRay(transform.position, forward, Color.green);
 
-        //HANDS CODE
-
-/*
-       
-        handRotationX += Input.GetAxis("Mouse X") * sensitivityX;
-        handRotationX = Mathf.Clamp(handRotationX, -50, 50);
         
-
-        handRotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-        handRotationY = Mathf.Clamp(handRotationY, -4, 80);
-       
-
-        leftHandEGO.transform.localEulerAngles = new Vector3(-handRotationY, handRotationX, 0);
-        rightHandEGO.transform.localEulerAngles = new Vector3(-handRotationY, handRotationX, 0);
-     
-*/
-
-        
-   
-
-        
-
-//NEXT UP:
-/*napárovat úhel vektoru pohledu s clampem -> aby rotace rukou byla o něco míň, než rotace kamery, ale nespínala se při návratu zpět*/
-     Debug.Log(Vector3.Angle(leftHandEGO.transform.forward,Camera.main.transform.forward));
-     //<45, >55
-
-
-
 
     }
 
