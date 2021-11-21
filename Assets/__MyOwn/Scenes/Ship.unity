@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127315c6897e5e04d91c8abd585a7295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1119810744}
+  player: {fileID: 160488006}
   grabedObject: {fileID: 0}
   modedRb: {fileID: 0}
   leftPalmEGO: {fileID: 719537911}
@@ -419,7 +419,7 @@ MonoBehaviour:
   boxCollider: {fileID: 160488007}
   distanceToImpact: 0
   animatorPlayer: {fileID: 0}
-  player: {fileID: 1119810744}
+  player: {fileID: 160488006}
   animGrounded: 0
   forward: 0
   turn: 0
@@ -1177,12 +1177,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c28075e6e1a5c34ca899fd618879dd4, type: 3}
---- !u!1 &1119810744 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100078, guid: 8c28075e6e1a5c34ca899fd618879dd4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1086945834}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1119810746 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400078, guid: 8c28075e6e1a5c34ca899fd618879dd4,

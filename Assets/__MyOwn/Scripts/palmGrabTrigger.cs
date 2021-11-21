@@ -15,7 +15,7 @@ public class palmGrabTrigger : MonoBehaviour
         if (other.CompareTag("gravModable") && !grabScript.isGrabed)
         {
             grabScript.Grab(other.gameObject);
-            leftPalmTrigger.enabled = false;
+            //leftPalmTrigger.enabled = false;
         }
     }
 

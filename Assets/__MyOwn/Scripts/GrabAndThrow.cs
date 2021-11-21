@@ -99,7 +99,7 @@ public class GrabAndThrow : MonoBehaviour
         palmScript.leftPalmTrigger.enabled = true;
         Debug.Log("TriggerEnable fired");
         Physics.IgnoreCollision(palmScript.leftPalmTrigger, grabedObject.GetComponent<Collider>(), false);
-        Physics.IgnoreCollision(grabedObject.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
+        Physics.IgnoreCollision(grabedObject.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
     }
 
     private void FixedUpdate()
