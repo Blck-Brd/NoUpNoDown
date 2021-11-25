@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 160488012}
   m_Layer: 0
   m_Name: PlayerRoot
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -362,7 +362,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.53564453, y: 1.7493591, z: 0.29534912}
-  m_Center: {x: 0.77, y: -0.55, z: 0.037628174}
+  m_Center: {x: 0, y: -0.55, z: 0.037628174}
 --- !u!4 &160488008
 Transform:
   m_ObjectHideFlags: 0
@@ -398,6 +398,7 @@ MonoBehaviour:
   leftPalmPos: {x: 0, y: 0, z: 0}
   isBeingAtracted: 0
   isGrabed: 0
+  grabImpactPoint: {x: 0, y: 0, z: 0}
   gravmodStrenght: 10
   gravmodMultiplier: 10
   gravModRange: 100
@@ -747,6 +748,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1086945834}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &719537912
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719537911}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13395274, y: 0.23265232, z: 0.18497239}
+  m_Center: {x: -0.012844705, y: -0.062272355, z: 0.068831846}
 --- !u!114 &719537913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,20 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabScript: {fileID: 160488009}
-  leftPalmTrigger: {fileID: 719537914}
---- !u!65 &719537914
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719537911}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.06736707, y: 0.15705827, z: 0.21815105}
-  m_Center: {x: -0.00500802, y: -0.049674556, z: 0.0886977}
+  leftPalmTrigger: {fileID: 719537912}
 --- !u!1 &809334438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,7 +1531,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060647299}
   serializedVersion: 2
-  m_Mass: 9
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1

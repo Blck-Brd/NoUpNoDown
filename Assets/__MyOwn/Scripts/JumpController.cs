@@ -23,6 +23,8 @@ public class JumpController : MonoBehaviour
     private Vector3 myNormal; // character normal
     private float distGround; // distance from character position to ground
     private bool jumping = false; // flag &quot;I'm jumping to wall&quot;
+
+    [SerializeField] GameObject currentObjWalkedOn;
     
     public float jumpSpeedModifier;
 
@@ -72,6 +74,7 @@ public class JumpController : MonoBehaviour
         if (collision.gameObject.CompareTag("Walkable"))
         {
             animGrounded = true;
+            currentObjWalkedOn = collision.gameObject;
         }
     }
 
@@ -80,6 +83,7 @@ public class JumpController : MonoBehaviour
                 if (other.gameObject.CompareTag("Walkable"))
         {
             animGrounded = true;
+            currentObjWalkedOn = other.gameObject;
         }
     }
 

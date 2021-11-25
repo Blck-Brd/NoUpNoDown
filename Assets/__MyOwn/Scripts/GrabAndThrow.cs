@@ -13,6 +13,8 @@ public class GrabAndThrow : MonoBehaviour
     public bool isBeingAtracted;
     public bool isGrabed;
 
+    public Vector3 grabImpactPoint;
+
     public float gravmodStrenght = 10f;
     public float gravmodMultiplier = 10f;
     public float gravModRange = 100f;
@@ -22,6 +24,7 @@ public class GrabAndThrow : MonoBehaviour
 
 
     public palmGrabTrigger palmScript;
+
 
 
 
@@ -39,11 +42,6 @@ public class GrabAndThrow : MonoBehaviour
         leftPalmPos = leftPalmEGO.transform.position;
 
 
-        if (isBeingAtracted && !isGrabed)
-        {
-            Atract(modedRb, leftPalmPos);
-        }
-        else { }
     }
 
 
@@ -58,6 +56,7 @@ public class GrabAndThrow : MonoBehaviour
         float strenght = gravmodStrenght / rb.mass;
         rb.useGravity = false;
         rb.AddForce(dir * strenght, ForceMode.Impulse);
+        
         Debug.Log("Atract fired");
     }
 
@@ -71,7 +70,7 @@ public class GrabAndThrow : MonoBehaviour
         Physics.IgnoreCollision(palmScript.leftPalmTrigger, objectToGrab.GetComponent<Collider>(), true);
         Physics.IgnoreCollision(objectToGrab.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
         objectToGrab.transform.position = leftPalmPos;
-        objectToGrab.transform.SetParent(leftPalmEGO.transform);
+        //objectToGrab.transform.SetParent(leftPalmEGO.transform);
         isGrabed = true;
         Debug.Log("grab fired");
     }
@@ -126,6 +125,14 @@ public class GrabAndThrow : MonoBehaviour
         {
             Throw(grabedObject);
         }
+
+
+        
+        if (isBeingAtracted && !isGrabed)
+        {
+            Atract(modedRb, leftPalmPos);
+        }
+        else { }
 
 
 
