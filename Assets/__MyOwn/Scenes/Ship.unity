@@ -379,6 +379,7 @@ GameObject:
   - component: {fileID: 160488011}
   - component: {fileID: 160488012}
   - component: {fileID: 160488009}
+  - component: {fileID: 160488010}
   m_Layer: 0
   m_Name: PlayerRoot
   m_TagString: Untagged
@@ -422,7 +423,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160488006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95291bcae35fcce4dab180e238e7f290, type: 3}
   m_Name: 
@@ -433,6 +434,23 @@ MonoBehaviour:
   origPos: {x: 0, y: 0, z: 0}
   distanceOfObject: 0
   weightLimit: 100
+--- !u!114 &160488010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160488006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1fd2d43974edb409fb88ad33644f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weightLimit: 0
+  grabDistance: 0
+  grabedObject: {fileID: 0}
+  leftHand: {fileID: 719537911}
+  handPos: {x: 0, y: 0, z: 0}
 --- !u!114 &160488011
 MonoBehaviour:
   m_ObjectHideFlags: 0
