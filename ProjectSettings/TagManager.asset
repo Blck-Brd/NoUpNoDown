@@ -8,6 +8,7 @@ TagManager:
   - RagdollParts
   - GravModifiable
   - gravModable
+  - pickupable
   layers:
   - Default
   - TransparentFX
