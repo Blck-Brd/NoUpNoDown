@@ -8,6 +8,7 @@ public class pickupV2 : MonoBehaviour
       public float weightLimit;
       public float grabDistance;
       public GameObject grabedObject;
+      public GameObject objectToGrab;
 
       public GameObject leftHand;
       public GameObject attachPoint;
@@ -52,6 +53,8 @@ public class pickupV2 : MonoBehaviour
          grabedObject = null;
         }
 
+
+
        
 
        if(Input.GetMouseButtonDown(0))
@@ -59,7 +62,8 @@ public class pickupV2 : MonoBehaviour
 
         if(Physics.Raycast(pickupRay,out pickupRaycast,grabDistance,3)
         &&pickupRaycast.rigidbody.mass< weightLimit
-        &&!objectGrabed)
+        &&!objectGrabed
+        && grabedObject !=null)
 
         {
          //start pickup here
@@ -79,10 +83,11 @@ public class pickupV2 : MonoBehaviour
 //Works well with 10F
      IEnumerator Pickup()
     {
-        for (float dist = Vector3.Distance(grabedObject.transform.position, handPos); dist > 1f; dist = Vector3.Distance(grabedObject.transform.position, handPos) )
+    
+        for (float dist = Vector3.Distance(grabedObject.transform.position, handPos); dist > 0.5f; dist = Vector3.Distance(grabedObject.transform.position, handPos) )
         {
         grabedObject.GetComponent<Rigidbody>().useGravity = false;
-        grabedObject.transform.position = Vector3.Lerp(grabedObject.transform.position,handPos, 0.5f * Time.deltaTime);
+        grabedObject.transform.position = Vector3.Lerp(grabedObject.transform.position,handPos, 0.1f);
         }
 
 
@@ -90,7 +95,7 @@ public class pickupV2 : MonoBehaviour
         {
            grabedObject.GetComponent<Rigidbody>().useGravity = true;
            grabedObject = null;
-           objectGrabed = true;
+           objectGrabed = false;
 
         }
         yield return null;
