@@ -40,10 +40,8 @@ public class pickupV2 : MonoBehaviour
     void Update()
     {
         handPos = leftHand.transform.position;
-    }
 
- void FixedUpdate()
-    {
+
 
         pickupRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         
@@ -94,6 +92,12 @@ public class pickupV2 : MonoBehaviour
 
 
 
+    }
+
+ void FixedUpdate()
+    {
+
+        
 
     }
 
