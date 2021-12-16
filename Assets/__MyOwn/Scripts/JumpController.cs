@@ -12,7 +12,7 @@ public class JumpController : MonoBehaviour
     private float moveSpeed = 6; // move speed
     private float turnSpeed = 90; // turning speed (degrees/second)
     private float lerpSpeed = 10; // smoothing speed
-    private float gravity = 10; // gravity acceleration
+    public float gravity = 10; // gravity acceleration
     private bool isGrounded;
 
     public bool isCrouched;

@@ -10,11 +10,14 @@ public class pickupV2 : MonoBehaviour
       public GameObject grabedObject;
 
       public GameObject leftHand;
+      public GameObject attachPoint;
       public Vector3 handPos;
 
 
       public Ray pickupRay;
       public RaycastHit pickupRaycast;
+
+      public bool objectGrabed;
 
 
 
@@ -37,9 +40,16 @@ public class pickupV2 : MonoBehaviour
 
         pickupRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         
-        if(Physics.Raycast(pickupRay,out pickupRaycast, grabDistance, 3))
+        if(Physics.Raycast(pickupRay,out pickupRaycast, grabDistance, 3)
+        &&
+        pickupRaycast.collider.CompareTag("pickupable"))
         {
             grabedObject = pickupRaycast.collider.gameObject;
+        }
+
+        else
+        {
+         grabedObject = null;
         }
 
        
@@ -48,20 +58,21 @@ public class pickupV2 : MonoBehaviour
        { 
 
         if(Physics.Raycast(pickupRay,out pickupRaycast,grabDistance,3)
-        &&pickupRaycast.collider.CompareTag("pickupable")
-        &&pickupRaycast.rigidbody.mass< weightLimit)
+        &&pickupRaycast.rigidbody.mass< weightLimit
+        &&!objectGrabed)
 
         {
          //start pickup here
         StartCoroutine(Pickup());
         }
-        else
-        {
-            
-        }
 
        } 
     
+    if(objectGrabed)
+    {
+     Attach(grabedObject);
+    }
+
     }
 
 
@@ -71,7 +82,7 @@ public class pickupV2 : MonoBehaviour
         for (float dist = Vector3.Distance(grabedObject.transform.position, handPos); dist > 1f; dist = Vector3.Distance(grabedObject.transform.position, handPos) )
         {
         grabedObject.GetComponent<Rigidbody>().useGravity = false;
-        grabedObject.transform.position = Vector3.Lerp(grabedObject.transform.position,handPos, 1f);
+        grabedObject.transform.position = Vector3.Lerp(grabedObject.transform.position,handPos, 0.5f * Time.deltaTime);
         }
 
 
@@ -79,8 +90,19 @@ public class pickupV2 : MonoBehaviour
         {
            grabedObject.GetComponent<Rigidbody>().useGravity = true;
            grabedObject = null;
+           objectGrabed = true;
+
         }
         yield return null;
+    }
+
+
+    public void Attach(GameObject obj)
+    {
+     
+    obj.transform.position = attachPoint.transform.position;
+    
+
     }
 
     

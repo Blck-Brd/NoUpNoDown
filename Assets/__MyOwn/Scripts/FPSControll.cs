@@ -22,8 +22,7 @@ public class FPSControll : MonoBehaviour
     //edit:
     float rotationX = 0F;
 
-    float handRotationX = 0F;
-    float handRotationY = 0F;
+
 
 
 
