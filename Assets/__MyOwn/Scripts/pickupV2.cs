@@ -7,8 +7,10 @@ public class pickupV2 : MonoBehaviour
 
       public float weightLimit;
       public float grabDistance;
+
+      public float throwForce;
       public GameObject grabedObject;
-      public GameObject objectToGrab;
+      public GameObject objectToAttach;
 
       public GameObject leftHand;
       public GameObject attachPoint;
@@ -19,6 +21,9 @@ public class pickupV2 : MonoBehaviour
       public RaycastHit pickupRaycast;
 
       public bool objectGrabed;
+      public bool readyToAttach;
+
+      public bool objectAttached;
 
 
 
@@ -26,8 +31,9 @@ public class pickupV2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grabDistance = 10f;
+        grabDistance = 2f;
         weightLimit = 100;
+        throwForce = 10f;
     }
 
     // Update is called once per frame
@@ -68,14 +74,26 @@ public class pickupV2 : MonoBehaviour
         {
          //start pickup here
         StartCoroutine(Pickup());
+       
         }
 
-       } 
+        else if(objectAttached)
+            {
+                Throw(objectToAttach);
+            }
+        }
+
+        
+
     
-    if(objectGrabed)
+    if(readyToAttach)
     {
-     Attach(grabedObject);
+     Attach(objectToAttach);
     }
+
+
+
+
 
     }
 
@@ -88,14 +106,17 @@ public class pickupV2 : MonoBehaviour
         {
         grabedObject.GetComponent<Rigidbody>().useGravity = false;
         grabedObject.transform.position = Vector3.Lerp(grabedObject.transform.position,handPos, 0.1f);
+        objectGrabed = true;
         }
 
 
         if(Vector3.Distance(grabedObject.transform.position,handPos) < 1.5f)
         {
            grabedObject.GetComponent<Rigidbody>().useGravity = true;
-           grabedObject = null;
            objectGrabed = false;
+           readyToAttach = true;
+           objectToAttach = grabedObject;
+
 
         }
         yield return null;
@@ -104,10 +125,25 @@ public class pickupV2 : MonoBehaviour
 
     public void Attach(GameObject obj)
     {
-     
-    obj.transform.position = attachPoint.transform.position;
     
+    obj.GetComponent<Rigidbody>().useGravity = false;
+    obj.transform.position = attachPoint.transform.position;
+    obj.transform.SetParent(attachPoint.transform);
+    objectAttached = true;
+    readyToAttach = false;
 
+    }
+
+    public void Throw(GameObject obj)
+    {
+      obj.GetComponent<Rigidbody>().useGravity = true;
+      obj.transform.SetParent(null);
+      obj.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
+
+    objectToAttach = null;
+    grabedObject = null;
+    objectAttached = false;
+ 
     }
 
     
