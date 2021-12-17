@@ -24,7 +24,8 @@ public class pickupV2 : MonoBehaviour
       public bool readyToAttach;
 
       public bool objectAttached;
-
+      
+      private Animator anim;
 
 
 
@@ -34,6 +35,7 @@ public class pickupV2 : MonoBehaviour
         grabDistance = 2f;
         weightLimit = 100;
         throwForce = 10f;
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -90,7 +92,7 @@ public class pickupV2 : MonoBehaviour
     }
 
 
-
+    anim.SetBool("HandGrab", objectAttached);
 
     }
 
@@ -131,6 +133,8 @@ public class pickupV2 : MonoBehaviour
     {
     
     obj.GetComponent<Rigidbody>().useGravity = false;
+    obj.GetComponent<Rigidbody>().isKinematic = true;
+    obj.GetComponent<Collider>().enabled = false;
     obj.transform.position = attachPoint.transform.position;
     obj.transform.SetParent(attachPoint.transform);
     objectAttached = true;
@@ -142,12 +146,19 @@ public class pickupV2 : MonoBehaviour
     {
       obj.GetComponent<Rigidbody>().useGravity = true;
       obj.transform.SetParent(null);
+      obj.GetComponent<Rigidbody>().isKinematic = false;
       obj.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
+      obj.GetComponent<Collider>().enabled = true;
 
     objectToAttach = null;
     grabedObject = null;
     objectAttached = false;
  
+    }
+
+    public void AnimFeed()
+    {
+        anim.SetBool("HandGrab", objectAttached);
     }
 
     
