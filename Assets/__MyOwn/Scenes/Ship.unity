@@ -1937,6 +1937,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 39368835355760624, guid: 3736c438d4db40b40a07f16aaec625ee,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 39368835355760628, guid: 3736c438d4db40b40a07f16aaec625ee,
         type: 3}
       propertyPath: m_RootOrder
