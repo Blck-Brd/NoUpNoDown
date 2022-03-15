@@ -9,6 +9,7 @@ TagManager:
   - GravModifiable
   - gravModable
   - pickupable
+  - static
   layers:
   - Default
   - TransparentFX
