@@ -2085,7 +2085,7 @@ GameObject:
   - component: {fileID: 39368835355760630}
   - component: {fileID: 1025146011}
   m_Layer: 0
-  m_Name: PlayerRoot
+  m_Name: PlayerCHCF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
