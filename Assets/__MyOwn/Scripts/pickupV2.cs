@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class pickupV2 : MonoBehaviour
 {
+    public Camera cam;
 
       public float weightLimit;
       public float grabDistance;
@@ -25,7 +26,7 @@ public class pickupV2 : MonoBehaviour
 
       public bool objectAttached;
       
-      private Animator anim;
+      
 
 
 
@@ -33,9 +34,9 @@ public class pickupV2 : MonoBehaviour
     void Start()
     {
         grabDistance = 2f;
-        weightLimit = 100;
+        weightLimit = 20;
         throwForce = 10f;
-        anim = GetComponentInChildren<Animator>();
+  
     }
 
     // Update is called once per frame
@@ -45,7 +46,7 @@ public class pickupV2 : MonoBehaviour
 
 
 
-        pickupRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        pickupRay = new Ray(cam.transform.position, cam.transform.forward);
         
         if(Physics.Raycast(pickupRay,out pickupRaycast, grabDistance, 3)
         &&
@@ -92,7 +93,7 @@ public class pickupV2 : MonoBehaviour
     }
 
 
-    anim.SetBool("HandGrab", objectAttached);
+    
 
     }
 
@@ -156,10 +157,7 @@ public class pickupV2 : MonoBehaviour
  
     }
 
-    public void AnimFeed()
-    {
-        anim.SetBool("HandGrab", objectAttached);
-    }
+
 
     
 

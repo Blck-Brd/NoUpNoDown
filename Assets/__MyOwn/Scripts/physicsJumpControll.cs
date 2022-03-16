@@ -44,11 +44,6 @@ public class physicsJumpControll : MonoBehaviour
             playerRb.AddForce(Camera.main.transform.forward * jumpStrenght,ForceMode.Impulse);
         }
 
-        //Crouch Toggle
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            isCrouched = !isCrouched;
-        }
 
 
 
@@ -60,13 +55,12 @@ public class physicsJumpControll : MonoBehaviour
         //rigidbody.AddForce(-gravity * rigidbody.mass * myNormal);
         
         //Movement
-        forward = Input.GetAxis("Vertical") * moveSpeed;
-        turn = Input.GetAxis("Mouse X") * (turnSpeed /15);
+
                player.transform.Rotate(0, Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime, 0);
         
 
        
-        AnimFeed(forward, turn, animGrounded, jumping, isCrouched);
+
 
 
 
@@ -79,7 +73,7 @@ public class physicsJumpControll : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("static"))
         {
-            animGrounded = true;
+
             currentObjWalkedOn = collision.gameObject;
         }
     }
@@ -88,7 +82,7 @@ public class physicsJumpControll : MonoBehaviour
     {
                 if (other.gameObject.CompareTag("static"))
         {
-            animGrounded = true;
+
             currentObjWalkedOn = other.gameObject;
         }
     }
@@ -97,21 +91,11 @@ public class physicsJumpControll : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("static"))
         {
-            animGrounded = false;
+            currentObjWalkedOn = null;
         }
     }
 
 
 
-
-        void AnimFeed(float Forward, float Turn, bool animGrounded, bool jumping, bool isCrouched)
-    {
-
-        animatorPlayer.SetFloat("Forward", Forward);
-        animatorPlayer.SetFloat("Turn", Turn);
-        animatorPlayer.SetBool("OnGround", animGrounded);
-        animatorPlayer.SetBool("Crouch", isCrouched);
-
-    }
 
 }

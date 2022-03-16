@@ -35,7 +35,7 @@ namespace CMF
 		[HideInInspector] public Vector3[] raycastArrayPreviewPositions;
 
 		//Ground detection variables;
-		bool isGrounded = false;
+		public bool isGrounded = false;
 
 		//Sensor range variables;
 		bool IsUsingExtendedSensorRange  = true;
