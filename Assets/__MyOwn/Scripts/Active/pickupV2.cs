@@ -33,7 +33,7 @@ public class pickupV2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grabDistance = 2f;
+        grabDistance = 5f;
         weightLimit = 20;
         throwForce = 10f;
   
@@ -43,14 +43,14 @@ public class pickupV2 : MonoBehaviour
     void Update()
     {
         handPos = leftHand.transform.position;
-
+        Debug.DrawRay(handPos, cam.transform.forward,Color.red);
 
 
         pickupRay = new Ray(cam.transform.position, cam.transform.forward);
         
         if(Physics.Raycast(pickupRay,out pickupRaycast, grabDistance, 3)
         &&
-        pickupRaycast.collider.CompareTag("pickupable"))
+        pickupRaycast.collider.CompareTag("gravModable"))
         {
             grabedObject = pickupRaycast.collider.gameObject;
         }
@@ -87,10 +87,7 @@ public class pickupV2 : MonoBehaviour
         
 
     
-    if(readyToAttach)
-    {
-     Attach(objectToAttach);
-    }
+
 
 
     
@@ -100,7 +97,10 @@ public class pickupV2 : MonoBehaviour
  void FixedUpdate()
     {
 
-        
+     if(readyToAttach)
+    {
+     Attach(objectToAttach);
+    } 
 
     }
 
@@ -119,7 +119,7 @@ public class pickupV2 : MonoBehaviour
 
         if(Vector3.Distance(grabedObject.transform.position,handPos) < 1.5f)
         {
-           grabedObject.GetComponent<Rigidbody>().useGravity = true;
+           grabedObject.GetComponent<Rigidbody>().useGravity = false;
            objectGrabed = false;
            readyToAttach = true;
            objectToAttach = grabedObject;
@@ -145,11 +145,11 @@ public class pickupV2 : MonoBehaviour
 
     public void Throw(GameObject obj)
     {
-      obj.GetComponent<Rigidbody>().useGravity = true;
+      obj.GetComponent<Rigidbody>().useGravity = false;
       obj.transform.SetParent(null);
       obj.GetComponent<Rigidbody>().isKinematic = false;
-      obj.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
       obj.GetComponent<Collider>().enabled = true;
+      obj.GetComponent<Rigidbody>().AddForce(cam.transform.forward * throwForce, ForceMode.Impulse);
 
     objectToAttach = null;
     grabedObject = null;
