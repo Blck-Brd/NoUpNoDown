@@ -51,12 +51,7 @@ public class physicsJumpControll : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // apply constant weight force according to character normal:
-        //rigidbody.AddForce(-gravity * rigidbody.mass * myNormal);
-        
-        //Movement
 
-               player.transform.Rotate(0, Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime, 0);
         
 
        

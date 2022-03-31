@@ -8,6 +8,11 @@ namespace CMF
 	//This script is an example of a very simple walker controller that covers only the basics of character movement;
     public class SimpleWalkerController : Controller
     {
+        //EDIT by BlckBrd
+        //dont fuck much with stuff, gonna try feed gravity here from gravity controll
+
+        public gravityController gravityControll;
+
         private Mover mover;
         float currentVerticalSpeed = 0f;
         bool isGrounded;
@@ -46,10 +51,23 @@ namespace CMF
             //Add player movement to velocity;
             _velocity += CalculateMovementDirection() * movementSpeed;
             
-            //Handle gravity;
-            if (!isGrounded)
+            //Handle gravity - origo
+            /*if (!isGrounded)
             {
                 currentVerticalSpeed -= gravity * Time.deltaTime;
+            }
+            else
+            {
+                if (currentVerticalSpeed <= 0f)
+                    currentVerticalSpeed = 0f;
+            }
+            */
+
+
+            //my edit
+            if (!isGrounded)
+            {
+                currentVerticalSpeed -= gravityControll.gravityStrenght * Time.deltaTime;
             }
             else
             {
@@ -65,7 +83,12 @@ namespace CMF
                 isGrounded = false;
             }
 
-            //Add vertical velocity;
+            //Add vertical velocity - origo
+            /*
+            _velocity += tr.up * currentVerticalSpeed;
+            */
+
+            //my edit
             _velocity += tr.up * currentVerticalSpeed;
 
 			//Save current velocity for next frame;

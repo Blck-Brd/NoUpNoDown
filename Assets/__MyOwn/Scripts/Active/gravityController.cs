@@ -22,7 +22,7 @@ public Rigidbody[] allRigidBodies;
        allRigidBodies = (Rigidbody[]) GameObject.FindObjectsOfType(typeof(Rigidbody));
 
         nullG = false;
-        gravityVector = Vector3.right;
+        gravityVector = Vector3.down;
         gravityStrenght = 10;
 
 
@@ -42,7 +42,45 @@ if (nullG)
 }
 
       if (nullG) return;
-      
+
+//FOR DEMO
+
+if(Input.GetKeyDown(KeyCode.LeftArrow))
+{
+  gravityVector = Vector3.left;
+}
+else if(Input.GetKeyDown(KeyCode.RightArrow))
+{
+  gravityVector = -Vector3.left;
+}
+else if(Input.GetKeyDown(KeyCode.UpArrow))
+{
+  gravityVector = Vector3.up;
+}
+
+else if(Input.GetKeyDown(KeyCode.DownArrow))
+{
+  gravityVector = -Vector3.up;
+}
+else if(Input.GetKeyDown(KeyCode.RightShift))
+{
+ gravityVector = Vector3.zero;
+      foreach(Rigidbody body in allRigidBodies)
+    {
+          if(!body.gameObject.CompareTag("static") && !body.gameObject.CompareTag("Player") && !body.gameObject.transform.IsChildOf(pickupScript.attachPoint.transform));
+     {
+       body.AddForce(Vector3.up * 2 * body.mass/10, ForceMode.Impulse);
+
+     } 
+    }
+
+    //Demo end
+
+
+
+}
+
+
       foreach(Rigidbody body in allRigidBodies)
     {
           if(!body.gameObject.CompareTag("static") && !body.gameObject.CompareTag("Player") && !body.gameObject.transform.IsChildOf(pickupScript.attachPoint.transform));
@@ -51,5 +89,15 @@ if (nullG)
 
      } 
     }
+
+
+
+
+
     }
+
+
+
+
+
 }
