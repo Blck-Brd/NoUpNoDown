@@ -18,7 +18,7 @@ namespace CMF
         bool isGrounded;
         public float movementSpeed = 7f;
         public float jumpSpeed = 10f;
-        public float gravity = 10f;
+       // public float gravity = 10f;
 
 		Vector3 lastVelocity = Vector3.zero;
 

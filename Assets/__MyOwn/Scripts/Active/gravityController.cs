@@ -21,7 +21,7 @@ public Rigidbody[] allRigidBodies;
     {
        allRigidBodies = (Rigidbody[]) GameObject.FindObjectsOfType(typeof(Rigidbody));
 
-        nullG = false;
+        //nullG = false;
         gravityVector = Vector3.down;
         gravityStrenght = 10;
 
@@ -41,7 +41,7 @@ if (nullG)
   gravityStrenght = 0;
 }
 
-      if (nullG) return;
+      
 
 //FOR DEMO
 
