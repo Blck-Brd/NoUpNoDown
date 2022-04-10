@@ -15,13 +15,21 @@ public Vector3 newUp;
 private void OnCollisionEnter(Collision other) 
 {
 
-if(other.gameObject.CompareTag("static"))
+if(other.gameObject.CompareTag("static") && gravControl.nullG)
 {
 //Calculate new up direction
 newUp = other.contacts[0].normal;
 
 SwitchDirection(newUp, tr);  
 }
+
+/*else if(!gravControl.nullG)
+
+{
+newUp = other.contacts[0].normal;
+GetComponent<AdvancedWalkerController>().AddMomentum(-newUp.normalized * 0.5f);
+}
+*/
 
 }
 

@@ -8,7 +8,10 @@ namespace CMF
 	//This controller is used as a basis for other controller types ('SidescrollerController');
 	//Custom movement input can be implemented by creating a new script that inherits 'AdvancedWalkerController' and overriding the 'CalculateMovementDirection' function;
 	public class AdvancedWalkerController : Controller {
+//My ref
+		public gravityController gravityControllerScript;
 
+        //public ControllerState 
 		//References to attached components;
 		protected Transform tr;
 		protected Mover mover;
@@ -50,7 +53,9 @@ namespace CMF
 		Vector3 savedMovementVelocity = Vector3.zero;
 
 		//Amount of downward gravity;
-		public float gravity = 30f;
+		public float gravity = 30 ;
+
+
 		[Tooltip("How fast the character will slide down steep slopes.")]
 		public float slideGravity = 5f;
 		
@@ -96,6 +101,8 @@ namespace CMF
 		void Update()
 		{
 			HandleJumpKeyInput();
+			gravity = gravityControllerScript.gravityStrenght;
+			
 		}
 
         //Handle jump booleans for later use in FixedUpdate;
@@ -373,7 +380,7 @@ namespace CMF
 				_verticalMomentum = VectorMath.ExtractDotVector(momentum, tr.up);
 				_horizontalMomentum = momentum - _verticalMomentum;
 			}
-
+//grav edit
 			//Add gravity to vertical momentum;
 			_verticalMomentum -= tr.up * gravity * Time.deltaTime;
 

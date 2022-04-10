@@ -1,30 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using CMF;
 public class gravityController : MonoBehaviour
 {
+  public GameObject player;
 
 public Vector3 gravityVector;
 public float gravityStrenght; 
 
 public pickupV2 pickupScript;
-
-
-
+public AdvancedWalkerController advancedControllerScript;
+public Mover moverScript;
 
 public bool nullG;
+
+
 
 public Rigidbody[] allRigidBodies; 
 
      void Start()
     {
        allRigidBodies = (Rigidbody[]) GameObject.FindObjectsOfType(typeof(Rigidbody));
+      // advancedControllerScript = player.GetComponent<AdvancedWalkerController>();
+      
+//Scene params here
 
-        //nullG = false;
+        nullG = false;
         gravityVector = Vector3.down;
         gravityStrenght = 10;
-
 
        
     } 
@@ -35,11 +39,16 @@ public Rigidbody[] allRigidBodies;
     // Update is called once per frame
     void Update()
     {
-if (nullG)
-{
-  gravityVector = Vector3.zero;
-  gravityStrenght = 0;
-}
+
+   
+
+        if (nullG)
+      {
+     GravityChange(0, Vector3.zero);
+      }
+
+
+
 
       
 
@@ -47,32 +56,28 @@ if (nullG)
 
 if(Input.GetKeyDown(KeyCode.LeftArrow))
 {
-  gravityVector = Vector3.left;
+  GravityChange(10, -Vector3.right);
 }
 else if(Input.GetKeyDown(KeyCode.RightArrow))
 {
-  gravityVector = -Vector3.left;
+
+GravityChange(10, Vector3.right);
+
 }
 else if(Input.GetKeyDown(KeyCode.UpArrow))
 {
-  gravityVector = Vector3.up;
+  GravityChange(10, -Vector3.down);
 }
 
 else if(Input.GetKeyDown(KeyCode.DownArrow))
 {
-  gravityVector = -Vector3.up;
+  GravityChange(10, Vector3.down);
 }
 else if(Input.GetKeyDown(KeyCode.RightShift))
 {
- gravityVector = Vector3.zero;
-      foreach(Rigidbody body in allRigidBodies)
-    {
-          if(!body.gameObject.CompareTag("static") && !body.gameObject.CompareTag("Player") && !body.gameObject.transform.IsChildOf(pickupScript.attachPoint.transform));
-     {
-       body.AddForce(Vector3.up * 2 * body.mass/10, ForceMode.Impulse);
-
-     } 
-    }
+  nullG = !nullG;
+  
+   }
 
     //Demo end
 
@@ -81,23 +86,52 @@ else if(Input.GetKeyDown(KeyCode.RightShift))
 }
 
 
+
+
+
+
+
+    
+
+     void FixedUpdate()
+      {
+
+       StableGravity(gravityStrenght, gravityVector); 
+
+      }
+ 
+
+//GRAVITY CHANGE EVENTS
+
+void GravityChange(float newStrengt, Vector3 newGravDir)
+{
+gravityStrenght = newStrengt;
+gravityVector = newGravDir;
+
+//advancedControllerScript.AddMomentum(newGravDir * 10);
+
+
+}
+
+//stableGravMethod
+
+void StableGravity(float strenght, Vector3 gravDirection)
+{
+  
       foreach(Rigidbody body in allRigidBodies)
     {
-          if(!body.gameObject.CompareTag("static") && !body.gameObject.CompareTag("Player") && !body.gameObject.transform.IsChildOf(pickupScript.attachPoint.transform));
+          if(!body.gameObject.CompareTag("static") && /*!body.gameObject.CompareTag("Player") &&*/ !body.gameObject.transform.IsChildOf(pickupScript.attachPoint.transform));
      {
-       body.AddForce(gravityVector * body.mass * gravityStrenght);
+       body.AddForce(gravDirection * body.mass * strenght);
 
+      if(moverScript.isGrounded)
+       {
+       advancedControllerScript.SetMomentum(gravDirection * (player.GetComponent<Rigidbody>().mass * 0.3f));
+       }
      } 
     }
-
-
-
-
-
-    }
-
-
-
+ 
+}
 
 
 }
