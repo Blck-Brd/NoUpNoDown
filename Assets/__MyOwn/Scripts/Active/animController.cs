@@ -57,7 +57,7 @@ public class animController : MonoBehaviour
        
         AnimFeed(forward, turn, animGrounded, isCrouched, animGrabbed);
 
-        Debug.Log(animGrounded);
+        
 
     }
 

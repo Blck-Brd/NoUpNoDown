@@ -26,7 +26,7 @@ public Rigidbody[] allRigidBodies;
       
 //Scene params here
 
-        nullG = false;
+        
         gravityVector = Vector3.down;
         gravityStrenght = 10;
 
@@ -40,7 +40,7 @@ public Rigidbody[] allRigidBodies;
     void Update()
     {
 
-   
+     Debug.Log(nullG);
 
         if (nullG)
       {
@@ -73,11 +73,13 @@ else if(Input.GetKeyDown(KeyCode.DownArrow))
 {
   GravityChange(10, Vector3.down);
 }
-else if(Input.GetKeyDown(KeyCode.RightShift))
+
+
+if(Input.GetKeyDown(KeyCode.RightShift))
 {
   nullG = !nullG;
   
-   }
+}
 
     //Demo end
 
@@ -105,8 +107,12 @@ else if(Input.GetKeyDown(KeyCode.RightShift))
 
 void GravityChange(float newStrengt, Vector3 newGravDir)
 {
+//nullG = false;
+
 gravityStrenght = newStrengt;
 gravityVector = newGravDir;
+
+
 
 //advancedControllerScript.AddMomentum(newGravDir * 10);
 
