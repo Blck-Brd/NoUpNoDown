@@ -15,7 +15,7 @@ public Vector3 newUp;
 private void OnCollisionEnter(Collision other) 
 {
 
-if(other.gameObject.CompareTag("static") && gravControl.nullG)
+if(other.gameObject.CompareTag("static") && gravControl.magBootsOn)
 {
 //Calculate new up direction
 newUp = other.contacts[0].normal;

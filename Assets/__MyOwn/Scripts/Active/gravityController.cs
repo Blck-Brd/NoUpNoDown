@@ -15,6 +15,8 @@ public Mover moverScript;
 
 public bool nullG;
 
+public bool magBootsOn;
+
 
 
 public Rigidbody[] allRigidBodies; 
@@ -25,7 +27,8 @@ public Rigidbody[] allRigidBodies;
       // advancedControllerScript = player.GetComponent<AdvancedWalkerController>();
       
 //Scene params here
-
+    
+       magBootsOn = true;
         
         gravityVector = Vector3.down;
         gravityStrenght = 10;
