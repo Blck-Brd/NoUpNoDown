@@ -13,6 +13,8 @@ public pickupV2 pickupScript;
 public AdvancedWalkerController advancedControllerScript;
 public Mover moverScript;
 
+
+
 public bool nullG;
 
 public bool magBootsOn;
@@ -26,7 +28,7 @@ public Rigidbody[] allRigidBodies;
        allRigidBodies = (Rigidbody[]) GameObject.FindObjectsOfType(typeof(Rigidbody));
       // advancedControllerScript = player.GetComponent<AdvancedWalkerController>();
       
-//Scene params here
+//read Scene params here
     
        magBootsOn = true;
         
