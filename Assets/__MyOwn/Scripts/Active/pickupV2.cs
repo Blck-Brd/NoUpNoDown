@@ -6,6 +6,7 @@ public class pickupV2 : MonoBehaviour
 {
     public Camera cam;
 
+    public equipManager equipScript;
       public float weightLimit;
       public float grabDistance;
 
@@ -64,7 +65,7 @@ public class pickupV2 : MonoBehaviour
 
        
 
-       if(Input.GetMouseButtonDown(0))
+       if(Input.GetMouseButtonDown(0) && equipScript.ActiveWeapon == 0 )
        { 
 
         if(Physics.Raycast(pickupRay,out pickupRaycast,grabDistance,3)

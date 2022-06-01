@@ -11,6 +11,7 @@ public class animController : MonoBehaviour
  public Camera cam;
     public bool animGrounded;
     public bool animGrabbed;
+    public int animActiveWpn;
     public float forward;
     public float turn;
     public bool jumping;
@@ -22,6 +23,9 @@ public class animController : MonoBehaviour
    //For feeding calculated anims from other scripts
     public Mover mover;
    public pickupV2 pickupScript;
+   public equipManager equipScript;
+
+   
 
 
 
@@ -47,6 +51,7 @@ public class animController : MonoBehaviour
 
    animGrounded = mover.isGrounded;
    animGrabbed = pickupScript.objectAttached;
+   animActiveWpn = equipScript.ActiveWeapon;
 
 
 
@@ -55,13 +60,13 @@ public class animController : MonoBehaviour
               
 
        
-        AnimFeed(forward, turn, animGrounded, isCrouched, animGrabbed);
+        AnimFeed(forward, turn, animGrounded, isCrouched, animGrabbed, animActiveWpn);
 
         
 
     }
 
-    void AnimFeed(float Forward, float Turn, bool animGrounded, bool isCrouched, bool animGrabbed)
+    void AnimFeed(float Forward, float Turn, bool animGrounded, bool isCrouched, bool animGrabbed, int animActiveWpn)
     {
 
         animatorPlayer.SetFloat("Forward", Forward);
@@ -69,6 +74,7 @@ public class animController : MonoBehaviour
         animatorPlayer.SetBool("OnGround", animGrounded);
         animatorPlayer.SetBool("Crouch", isCrouched);
         animatorPlayer.SetBool("HandGrab", animGrabbed);
+        animatorPlayer.SetInteger("Armed", animActiveWpn);
 
     }
 
