@@ -8,19 +8,26 @@ public class shooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gunRaised = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-   
+   HandleControls();
     }
 
 
 void HandleControls()
 {
-if(Input.GetKeyDown(KeyCode.))
+
+
+if(Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
+{
+    gunRaised = !gunRaised;
+Debug.Log(gunRaised);
+}
+
 }
 
 

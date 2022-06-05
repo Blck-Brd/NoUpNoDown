@@ -16,6 +16,7 @@ public class animController : MonoBehaviour
     public float turn;
     public bool jumping;
     public bool isCrouched;
+    bool animGunRaised;
 
     private float moveSpeed = 6; // move speed
     private float turnSpeed = 90; // turning speed (degrees/second)
@@ -24,6 +25,7 @@ public class animController : MonoBehaviour
     public Mover mover;
    public pickupV2 pickupScript;
    public equipManager equipScript;
+   public shooter shooterScript;
 
    
 
@@ -52,6 +54,8 @@ public class animController : MonoBehaviour
    animGrounded = mover.isGrounded;
    animGrabbed = pickupScript.objectAttached;
    animActiveWpn = equipScript.ActiveWeapon;
+   animGunRaised = shooterScript.gunRaised;
+
 
 
 
@@ -60,13 +64,13 @@ public class animController : MonoBehaviour
               
 
        
-        AnimFeed(forward, turn, animGrounded, isCrouched, animGrabbed, animActiveWpn);
+        AnimFeed(forward, turn, animGrounded, isCrouched, animGrabbed, animActiveWpn, animGunRaised);
 
         
 
     }
 
-    void AnimFeed(float Forward, float Turn, bool animGrounded, bool isCrouched, bool animGrabbed, int animActiveWpn)
+    void AnimFeed(float Forward, float Turn, bool animGrounded, bool isCrouched, bool animGrabbed, int animActiveWpn, bool animGunRaised)
     {
 
         animatorPlayer.SetFloat("Forward", Forward);
@@ -75,6 +79,8 @@ public class animController : MonoBehaviour
         animatorPlayer.SetBool("Crouch", isCrouched);
         animatorPlayer.SetBool("HandGrab", animGrabbed);
         animatorPlayer.SetInteger("Armed", animActiveWpn);
+        animatorPlayer.SetBool("gunRaised", animGunRaised);
+        
 
     }
 
